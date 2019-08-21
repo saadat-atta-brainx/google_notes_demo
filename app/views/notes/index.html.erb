@@ -1,5 +1,9 @@
+<%= link_to "Create Note", new_note_path, class: "btn btn-info note-crud-btn" %>
+
+<div class="notes-main-container">
+  <% if @notes.empty? %>
+    <h4>No Notes available</h4>
+  <% end %>
 
 
-<% if @notes.empty? %>
-  <div>No Notes available</div>
-<% end %>
+</div>

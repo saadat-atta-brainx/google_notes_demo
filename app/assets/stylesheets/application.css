@@ -31,6 +31,18 @@
   box-shadow: 1px 1px 2px grey;
 }
 
+.notes-main-container{
+    margin-top: 20px;
+}
+.notes-form-container{
+    width: 400px;
+    margin-top: 20px;
+}
+
+.note-crud-btn{
+    margin: 10px auto;
+}
+
 
 
 /* ------------------------------------------------- */
