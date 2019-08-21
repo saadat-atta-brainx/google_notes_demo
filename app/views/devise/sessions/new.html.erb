@@ -1,7 +1,8 @@
-<div class="container">
-<h2>Log in</h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<h2>Log in</h2>
+<span>New User?</span>
+  <%= link_to 'Sign Up', new_user_registration_path,class: "btn btn-info authentication-links" %>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name),html: { class: "login-form"}) do |f| %>
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
@@ -24,5 +25,5 @@
   </div>
 <% end %>
 
-</div>
+
 
