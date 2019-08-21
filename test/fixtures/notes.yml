@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyString
+  status: 1
+  is_pinned: 1
+  is_archive: 1
+  background_color: MyString
+
+two:
+  title: MyString
+  description: MyString
+  status: 1
+  is_pinned: 1
+  is_archive: 1
+  background_color: MyString
