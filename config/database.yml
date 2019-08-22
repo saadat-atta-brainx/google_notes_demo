@@ -1,31 +1,24 @@
-
-
-
-development:
+default: &default
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: google-notes
   pool: 5
+
+development:
+  <<: *default
+  database: google-notes
   username: brainx
   password: brainx321
  
 test:
-  adapter: mysql2
-  encoding: utf8
-  reconnect: false
-  database: google-notes
-  pool: 5
+  <<: *default
+  database: google-notes-test
   username: brainx
   password: brainx321
 
-
 production:
-  adapter: mysql2
-  encoding: utf8
-  reconnect: false
-  database: google-notes
-  pool: 5
+  <<: *default
+  database: google-notes-prod
   username: brainx
   password: brainx321
 

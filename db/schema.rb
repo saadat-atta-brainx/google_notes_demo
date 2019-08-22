@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_21_075010) do
+ActiveRecord::Schema.define(version: 2019_08_22_125200) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -42,9 +42,9 @@ ActiveRecord::Schema.define(version: 2019_08_21_075010) do
   create_table "notes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title", null: false
     t.string "description"
-    t.integer "status", default: 1, null: false
-    t.integer "is_pinned", default: 0, null: false
-    t.integer "is_archive", default: 0, null: false
+    t.boolean "status", default: true, null: false
+    t.boolean "is_pinned", default: false, null: false
+    t.boolean "is_archive", default: false, null: false
     t.string "background_color", default: "#ffffff", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

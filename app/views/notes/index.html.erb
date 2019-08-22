@@ -1,9 +1,30 @@
 <%= link_to "Create Note", new_note_path, class: "btn btn-info note-crud-btn" %>
-
 <div class="notes-main-container">
   <% if @notes.empty? %>
     <h4>No Notes available</h4>
+  <% else %>
+    <div class="card-columns mt-5">
+      <% @notes.each do |note| %>
+        <div class="card" style="background-color: <%= note.background_color %>">
+          <i class="note-pin <%= note.is_pinned ? "fas fa-map-pin" : "fas fa-thumbtack" %>" data-id="<%= note.id %>" data-pinned=<%= note.is_pinned %>></i>
+          <div class="card-body">
+            <h5 class="card-title">Title: <%= note.title %></h5>
+            <p class="card-text">Description: <%= note.description %></p>
+
+            <% if note.images.attached? %>
+              <% note.images.each do |image| %>
+                <div class="">
+                  <img src="<%= url_for(image) %>>" class="card-img attachment-img">
+                </div>
+              <% end %>
+            <% end %>
+
+            <%= link_to "Show", note_path(note), class: "navigation-links" %>
+            <%= link_to "Edit", edit_note_path(note), class: "navigation-links" %>
+            <%= link_to "Delete", note_path(note), method: :delete, data: { confirm: "Are you sure you want to delete?" } %>
+          </div>
+        </div>
+      <% end %>
+    </div>
   <% end %>
-
-
 </div>
