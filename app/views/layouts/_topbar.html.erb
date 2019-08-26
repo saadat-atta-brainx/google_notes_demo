@@ -1,27 +1,25 @@
-<% if user_signed_in? %>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">
-    <img src="https://www.gstatic.com/images/branding/product/1x/keep_48dp.png" class="d-inline-block align-top" width="40" alt="">
+  <a class="navbar-brand" href="/notes">
+    <img src="/assets/google_keep.png" class="d-inline-block align-top" width="40" alt="">
     <span class="logo-title"> Keep</span>
   </a>
-  
-  <form class="form-inline navbar-search">
+
+  <form class="form-inline navbar-search" action="/notes">
     <div class="input-group">
       <div class="input-group-prepend">
         <span class="input-group-text fas fa-search form-input-icon"></span>
       </div>
-      <input type="text" class="form-control" placeholder="Search" size="70">
+      <input type="text" class="form-control" placeholder="Search" name="search" size="70">
     </div>
   </form>
   <div class="login-status dropdown">
-    <button class="btn dropdown-toggle loginMenuButton" type="button" id="loginMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <button class="btn dropdown-toggle login-menu-button" type="button" id="login-menu-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       Hello <span class="user-name"><%= current_user.username %></span>
     </button>
-    <div class="dropdown-menu" aria-labelledby="loginMenuButton">
+    <div class="dropdown-menu" aria-labelledby="login-menu-button">
       <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
-      
     </div>
   </div>
 </nav>
 
-<% end %>
+
