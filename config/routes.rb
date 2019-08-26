@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   resources :notes do
     member do
       delete :delete_image_attachment
+      post :pinned
     end
   end
-  post "notes/pinned", to: 'notes#pinned'
+
 end

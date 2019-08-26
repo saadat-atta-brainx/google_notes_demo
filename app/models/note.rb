@@ -8,5 +8,5 @@ class Note < ApplicationRecord
   scope :activated, -> { where(status: true) }
   scope :pinned, -> { where(is_pinned: true) }
   scope :pinned_descending, -> { order(is_pinned: :desc) }
-  scope :search_for, ->(keyword) { where('title like :search or description like :search', { search: "#{keyword}%" }) }
+  scope :search_by_title_or_description, ->(keyword) { where('title like :searchKey or description like :searchKey', { searchKey: "#{keyword}%" }) }
 end

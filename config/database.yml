@@ -3,18 +3,16 @@ default: &default
   encoding: utf8
   reconnect: false
   pool: 5
+  username: brainx
+  password: brainx321
 
 development:
   <<: *default
   database: google-notes
-  username: brainx
-  password: brainx321
- 
+
 test:
   <<: *default
   database: google-notes-test
-  username: brainx
-  password: brainx321
 
 production:
   <<: *default

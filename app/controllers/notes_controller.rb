@@ -2,7 +2,7 @@ class NotesController < ApplicationController
 
   def index
     if params[:search]
-      @notes = current_user.notes.activated.search_for(params[:search])
+      @notes = current_user.notes.activated.search_by_title_or_description(params[:search])
     else
       @notes = current_user.notes.activated.pinned_descending
     end
@@ -18,7 +18,7 @@ class NotesController < ApplicationController
 
   def create
     @note = current_user.notes.create(note_params)
-    if @note
+    if @note.id
       redirect_to note_path(@note)
     else
       render 'new'
