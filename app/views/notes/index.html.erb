@@ -1,4 +1,7 @@
-<%= link_to "Create Note", new_note_path, class: "btn btn-info note-crud-btn" %>
+<% flash.each do |name, msg| -%>
+  <%= content_tag :div, msg, class: name %>
+<% end -%>
+<%= link_to "Create Note", new_note_path, { remote: true, class: "btn btn-info note-crud-btn" } %>
 <div class="notes-main-container">
   <% if @notes.empty? %>
     <h4>No Notes available</h4>
@@ -20,11 +23,15 @@
             <% end %>
 
             <%= link_to "Show", note_path(note), class: "navigation-links" %>
-            <%= link_to "Edit", edit_note_path(note), class: "navigation-links" %>
+            <%= link_to "Edit", edit_note_path(note), remote: true, class: "navigation-links" %>
             <%= link_to "Delete", note_path(note), method: :delete, data: { confirm: "Are you sure you want to delete?" } %>
           </div>
         </div>
       <% end %>
     </div>
   <% end %>
+</div>
+
+<div class="note-form">
+
 </div>

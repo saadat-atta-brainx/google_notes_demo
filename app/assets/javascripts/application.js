@@ -10,10 +10,14 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery
+//= require popper
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
-//= require_tree .
+//= require bootstrap
+//= require notify.min
+//= require_tree.
 $(document).ready(function () {
     $(document).on("click", ".form-input-icon", function () {
         $(".navbar-search").submit();
@@ -37,6 +41,11 @@ $(document).ready(function () {
                 }
             }
         });
+    });
+
+    $('.note-form').submit(function () {
+        $("#noteModal").modal('hide');
+        $.notify("Record created successfully", "success", {autoHide: true, autoHideDelay: 5000});
     });
 
 });

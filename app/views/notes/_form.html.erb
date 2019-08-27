@@ -1,41 +1,53 @@
-<%= form_with model: @note, local: true do |form| %>
+<div class="modal" tabindex="-1" role="dialog" id="noteModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= form_with model: @note, class: 'note-form' do |form| %>
 
-  <% if @note.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@note.errors.count, "error") %> prohibited
-        this note from being saved:
-      </h2>
-      <ul>
-        <% @note.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
+          <% if @note.errors.any? %>
+            <div id="error_explanation">
+              <h2>
+                <%= pluralize(@note.errors.count, "error") %> prohibited
+                this note from being saved:
+              </h2>
+              <ul>
+                <% @note.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <div class="form-group">
+            <%= form.label :title %>
+            <%= form.text_field :title, class: "form-control", required: true, minlength: 3 %>
+          </div>
+
+          <div class="form-group">
+            <%= form.label :description %>
+            <%= form.text_area :description, class: "form-control", rows: 4, required: true, minlength: 3 %>
+          </div>
+
+          <div class="form-group">
+            <%= form.label :background_color %>
+            <%= form.color_field :background_color, class: "" %>
+          </div>
+
+          <div class="form-group">
+            <%= form.label :images %>
+            <%= form.file_field :images, :multiple => true, accept: 'image/png,image/jpg,image/jpeg', class: "form-control-file" %>
+          </div>
+          <div class="modal-footer">
+            <%= form.submit class: "btn btn-info" %>
+          </div>
+          </div>
         <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="form-group">
-    <%= form.label :title %>
-    <%= form.text_field :title, class: "form-control" %>
+        </div>
   </div>
-
-  <div class="form-group">
-    <%= form.label :description %>
-    <%= form.text_area :description, class: "form-control", rows: 4 %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :background_color %>
-    <%= form.color_field :background_color, class: "" %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :images %>
-    <%= form.file_field :images, :multiple => true, accept: 'image/png,image/jpg,image/jpeg', class: "form-control-file" %>
-  </div>
-
-  <div class="form-group">
-    <%= form.submit class: "btn btn-info" %>
-  </div>
-
-<% end %>
+</div>

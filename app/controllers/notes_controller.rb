@@ -6,22 +6,23 @@ class NotesController < ApplicationController
     else
       @notes = current_user.notes.activated.pinned_descending
     end
-  end
 
-  def show
-    @note = current_user.notes.activated.find(params[:id])
   end
 
   def new
     @note = Note.new
   end
 
+  def show
+    @note = current_user.notes.activated.find(params[:id])
+  end
+
   def create
     @note = current_user.notes.create(note_params)
-    if @note.id
-      redirect_to note_path(@note)
+    if @note.valid?
+      flash[:notice] = "Record created successfully."
     else
-      render 'new'
+      render :new
     end
   end
 
@@ -31,15 +32,13 @@ class NotesController < ApplicationController
 
   def update
     @note = current_user.notes.activated.find(params[:id])
-    if @note.update(note_params)
-      redirect_to note_path(@note)
-    else
-      render 'edit'
+    unless @note.update(note_params)
+      render :edit
     end
   end
 
   def pinned
-    toggled_pin = params[:pinned].to_s == "true" ? false : true
+    toggled_pin = params[:pinned].to_s == 'true' ? false : true
     @note = current_user.notes.activated.find(params[:id])
     @note.update!(is_pinned: toggled_pin)
     render json: @note
