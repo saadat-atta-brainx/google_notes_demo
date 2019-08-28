@@ -1,6 +1,4 @@
-<% flash.each do |name, msg| -%>
-  <%= content_tag :div, msg, class: name %>
-<% end -%>
+
 <%= link_to "Create Note", new_note_path, { remote: true, class: "btn btn-info note-crud-btn" } %>
 <div class="notes-main-container">
   <% if @notes.empty? %>

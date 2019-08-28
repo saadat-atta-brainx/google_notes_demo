@@ -18,10 +18,8 @@ class NotesController < ApplicationController
   end
 
   def create
-    @note = current_user.notes.create(note_params)
-    if @note.valid?
-      flash[:notice] = "Record created successfully."
-    else
+    @note = current_user.notes.new(note_params)
+    unless @note.save
       render :new
     end
   end
