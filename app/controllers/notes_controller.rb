@@ -48,6 +48,12 @@ class NotesController < ApplicationController
     redirect_to notes_path
   end
 
+  # TODO: We can use shared
+  def shared_with_me
+    #@notes = Note.includes(:shares).where(shares: { user_id: current_user.id })
+    @notes = current_user.shared_notes
+  end
+
   def delete_image_attachment
     @note = current_user.notes.activated.find(params[:id])
     @note.images.find_by(params[:attachment_id]).purge

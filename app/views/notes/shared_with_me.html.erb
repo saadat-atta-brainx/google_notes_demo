@@ -1,0 +1,24 @@
+<div class="notes-main-container">
+  <% if @notes.empty? %>
+    <h4>No Notes available</h4>
+  <% else %>
+    <div class="card-columns mt-5">
+      <% @notes.each do |note| %>
+        <div class="card" style="background-color: <%= note.background_color %>">
+          <div class="card-body">
+            <h5 class="card-title">Title: <%= note.title %></h5>
+            <p class="card-text">Description: <%= note.description %></p>
+            <% if note.images.attached? %>
+              <% note.images.each do |image| %>
+                <div class="">
+                  <img src="<%= url_for(image) %>>" class="card-img attachment-img">
+                </div>
+              <% end %>
+            <% end %>
+            <%= link_to "Remove", delete_shared_note_note_shares_path(note), method: :delete, data: { confirm: "Are you sure you want to delete?" } %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

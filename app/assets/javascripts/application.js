@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery-ui/widgets/autocomplete
 //= require popper
 //= require rails-ujs
 //= require activestorage
@@ -18,6 +19,8 @@
 //= require bootstrap
 //= require notify.min
 //= require notes
+//= require shares
+
 
 $(document).ready(function () {
     $(document).on("click", ".form-input-icon", function () {

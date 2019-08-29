@@ -66,4 +66,5 @@ gem 'mysql2'
 gem 'activeadmin'
 gem 'bootstrap'
 gem 'popper_js'
+gem 'jquery-ui-rails'
 

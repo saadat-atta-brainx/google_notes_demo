@@ -1,4 +1,9 @@
-
+<script>
+    <% flash.each do |key, value| %>
+    if ("<%= key %>" == "notfound")
+        $.notify("<%= value %>", "warn", {autoHide: true, autoHideDelay: 5000});
+    <% end %>
+</script>
 <%= link_to "Create Note", new_note_path, { remote: true, class: "btn btn-info note-crud-btn" } %>
 <div class="notes-main-container">
   <% if @notes.empty? %>
@@ -23,6 +28,7 @@
             <%= link_to "Show", note_path(note), class: "navigation-links" %>
             <%= link_to "Edit", edit_note_path(note), remote: true, class: "navigation-links" %>
             <%= link_to "Delete", note_path(note), method: :delete, data: { confirm: "Are you sure you want to delete?" } %>
+            <%= link_to "Share", note_shares_path(note), remote: true, class: "navigation-links" %>
           </div>
         </div>
       <% end %>
@@ -30,6 +36,4 @@
   <% end %>
 </div>
 
-<div class="note-form">
-
-</div>
+<div class="note-form-modal-div"></div>

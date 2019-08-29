@@ -1,8 +1,4 @@
-$(document).ready(function () {
-    $('.note-form').submit(function () {
-        $("#noteModal").modal('hide');
-    });
-
+$(document).on('turbolinks:load', function () {
     $(document).on("click", ".note-pin", function () {
         $.ajax({
             type: "POST",

@@ -1,0 +1,5 @@
+<%# TODO: We should pass Share object instead of passing it's attributes %>
+<%# TODO: Show user email also. %>
+<li class="list-group-item">
+  <%= user.username %> <%= link_to "Remove", delete_shared_note_note_shares_path(note, user_id: user.id), class: "share-remove-link", method: :delete, data: { confirm: "Are you sure you want to delete?" } %>
+</li>

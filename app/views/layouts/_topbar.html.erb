@@ -12,11 +12,20 @@
       <input type="text" class="form-control" placeholder="Search" name="search" size="70">
     </div>
   </form>
+
+  <div class="collapse navbar-collapse" >
+    <ul class="navbar-nav mr-auto pl-3">
+      <li class="nav-item">
+        <%= link_to 'Shared With Me', shared_with_me_notes_path, class: 'nav-link' %>
+      </li>
+    </ul>
+  </div>
+
   <div class="login-status dropdown">
     <button class="btn dropdown-toggle login-menu-button" type="button" id="login-menu-button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       Hello <span class="user-name"><%= current_user.username %></span>
     </button>
-    <div class="dropdown-menu" aria-labelledby="login-menu-button">
+    <div class="dropdown-menu" role="menu" aria-labelledby="login-menu-button">
       <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
     </div>
   </div>
