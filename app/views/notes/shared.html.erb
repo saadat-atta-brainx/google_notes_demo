@@ -15,7 +15,8 @@
                 </div>
               <% end %>
             <% end %>
-            <%= link_to "Remove", delete_shared_note_note_shares_path(note), method: :delete, data: { confirm: "Are you sure you want to delete?" } %>
+            <% share = note.shares.find_by(user_id:current_user.id) %>
+            <%= link_to "Remove", note_share_path(share.note,share), method: :delete, data: { confirm: "Are you sure you want to delete?" } %>
           </div>
         </div>
       <% end %>

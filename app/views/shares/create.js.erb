@@ -1,1 +1,2 @@
-$("<%= j render('share', user: @user) %>").appendTo(".user-list-shares");
+$(".user-list-shares li#dummyUser").remove();
+$("<%= j render('share',share: @share) %>").appendTo(".user-list-shares");

@@ -1,9 +1,3 @@
-<script>
-    <% flash.each do |key, value| %>
-    if ("<%= key %>" == "notfound")
-        $.notify("<%= value %>", "warn", {autoHide: true, autoHideDelay: 5000});
-    <% end %>
-</script>
 <%= link_to "Create Note", new_note_path, { remote: true, class: "btn btn-info note-crud-btn" } %>
 <div class="notes-main-container">
   <% if @notes.empty? %>
@@ -12,7 +6,7 @@
     <div class="card-columns mt-5">
       <% @notes.each do |note| %>
         <div class="card" style="background-color: <%= note.background_color %>">
-          <i class="note-pin <%= note.is_pinned ? "fas fa-map-pin" : "fas fa-thumbtack" %>" data-id="<%= note.id %>" data-pinned=<%= note.is_pinned %>></i>
+          <i class="note-pin <%= note.is_pinned ? "fas fa-thumbtack" : "fas fa-map-pin" %>" data-id="<%= note.id %>" data-pinned=<%= note.is_pinned %>></i>
           <div class="card-body">
             <h5 class="card-title">Title: <%= note.title %></h5>
             <p class="card-text">Description: <%= note.description %></p>
@@ -36,4 +30,3 @@
   <% end %>
 </div>
 
-<div class="note-form-modal-div"></div>

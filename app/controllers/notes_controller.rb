@@ -48,9 +48,7 @@ class NotesController < ApplicationController
     redirect_to notes_path
   end
 
-  # TODO: We can use shared
-  def shared_with_me
-    #@notes = Note.includes(:shares).where(shares: { user_id: current_user.id })
+  def shared
     @notes = current_user.shared_notes
   end
 
@@ -62,8 +60,8 @@ class NotesController < ApplicationController
 
   private
 
-  def note_params
-    params.require(:note).permit(:title, :description, :background_color, images: [])
-  end
+    def note_params
+      params.require(:note).permit(:title, :description, :background_color, images: [])
+    end
 
 end

@@ -3,7 +3,7 @@ $(document).ready(function () {
         $('.suggest-user').autocomplete({
             source: function (request, response) {
                 $.ajax({
-                    url: "/shares/get_users",
+                    url: "/users/get_users",
                     method: "GET",
                     data: {q: request.term},
                     success: (data) => {

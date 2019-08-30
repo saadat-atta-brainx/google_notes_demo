@@ -4,17 +4,18 @@ Rails.application.routes.draw do
   root to: 'notes#index'
   devise_for :users
   resources :notes do
-    get :shared_with_me, on: :collection
+    get :shared, on: :collection
     member do
       delete :delete_image_attachment
       post :pinned
     end
     resources :shares do
-      delete :delete_shared_note, on: :collection
+      # delete :delete_shared, on: :collection
     end
   end
 
-  get 'shares/get_users'
-
+  resources :users do
+    get :get_users, on: :collection
+  end
 
 end

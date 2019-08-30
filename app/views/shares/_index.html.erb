@@ -8,42 +8,15 @@
         </button>
       </div>
       <div class="modal-body">
-        <%# TODO: use only one object to show errors %>
-        <%# TODO: You can refactor errors to a separate partial %>
-        <% if @user.errors.any? %>
-          <div id="error_explanation">
-            <h2>
-              <%= pluralize(@user.errors.count, "error") %> prohibited
-              this note from being saved:
-            </h2>
-            <ul>
-              <% @user.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-              <% end %>
-            </ul>
-          </div>
-        <% end %>
         <% if @share.errors.any? %>
-          <div id="error_explanation">
-            <h2>
-              <%= pluralize(@share.errors.count, "error") %> prohibited
-              this note from being saved:
-            </h2>
-            <ul>
-              <% @share.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-              <% end %>
-            </ul>
-          </div>
+          <%= render 'errors', object: @share %>
         <% end %>
         <h4 class="my-3">Shared With</h4>
         <ul class="list-group user-list-shares">
           <% if @note.shares.any? %>
-            <% @note.shares.each do |share| %>
-              <%= render 'share', user: share.user, note: share.note %>
-            <% end %>
+            <%= render @note.shares %>
           <% else %>
-            <li class="list-group-item">Shared with none</li>
+            <li class="list-group-item" id="dummyUser">Shared with none</li>
           <% end %>
         </ul>
         <h4 class="my-3">Invite People</h4>

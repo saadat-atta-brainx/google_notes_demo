@@ -4,15 +4,16 @@
   <title>GoogleNotesDemo</title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
-  <%# TODO: Use consistent libraries, if using gem for bootstrap then use css and js through gem %>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <%= stylesheet_link_tag 'fontawesome/css/font-awesome', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 <body>
-
+<script>
+    <% flash.each do |key, value| %>
+    if ("<%= key %>" === "error")
+        $.notify("<%= value %>", "warn", {autoHide: true, autoHideDelay: 5000});
+    <% end %>
+</script>
 <% if user_signed_in? %>
   <%= render 'layouts/topbar' %>
 <% end %>
@@ -20,7 +21,7 @@
 <div class="container">
   <%= yield %>
 </div>
-
+<div class="note-form-modal-div"></div>
 
 </body>
 </html>

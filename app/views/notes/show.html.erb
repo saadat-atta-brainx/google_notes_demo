@@ -1,22 +1,24 @@
-<div class="card-columns mt-5">
-  <div class="card" style="background-color: <%= @note.background_color %>">
+<div class="notes-main-container">
+  <div class="card-columns mt-5">
+    <div class="card" style="background-color: <%= @note.background_color %>">
 
-    <div class="card-body">
-      <i class=" note-pin <%= @note.is_pinned == 0 ? "fas fa-map-pin" : "fas fa-thumbtack" %>" data-id="<%= @note.id %>" data-pinned="<%= @note.is_pinned %>"></i>
-      <h5 class="card-title"><%= @note.title %></h5>
-      <p class="card-text"><%= @note.description %></p>
+      <div class="card-body">
+        <i class=" note-pin <%= @note.is_pinned == 0 ? "fas fa-map-pin" : "fas fa-thumbtack" %>" data-id="<%= @note.id %>" data-pinned="<%= @note.is_pinned %>"></i>
+        <h5 class="card-title"><%= @note.title %></h5>
+        <p class="card-text"><%= @note.description %></p>
 
-      <% if @note.images.attached? %>
-        <% @note.images.each do |image| %>
-          <div class="card">
-            <img src="<%= url_for(image) %>>" class="card-img attachment-img">
-            <%= link_to 'Remove', delete_image_attachment_note_url(@note, image.id), method: :delete, data: { confirm: 'Are you sure?' } %>
-          </div>
+        <% if @note.images.attached? %>
+          <% @note.images.each do |image| %>
+            <div class="card">
+              <img src="<%= url_for(image) %>>" class="card-img attachment-img">
+              <%= link_to 'Remove', delete_image_attachment_note_url(@note, image.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+            </div>
+          <% end %>
         <% end %>
-      <% end %>
 
-      <%= link_to "Edit", edit_note_path(@note), class: "navigation-links" %>
+        <%= link_to "Edit", edit_note_path(@note), remote: true, class: "navigation-links" %>
 
+      </div>
     </div>
   </div>
 </div>
