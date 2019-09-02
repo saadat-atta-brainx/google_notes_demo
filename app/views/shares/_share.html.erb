@@ -6,5 +6,24 @@
     <strong class="col-3">Email:</strong><%= share.user.email %><br>
   </div>
 
+  <select class="custom-select share-privileges" id="sharePrivileges" data-id="<%= share.id %>" data-noteid="<%= share.note_id %>">
+    <option value="0">Can View</option>
+    <option value="1">Can Edit</option>
+    <option value="2">Can Delete</option>
+  </select>
+
   <%= link_to "Remove", [share.note, share], class: "share-remove-link", method: :delete, data: { confirm: "Are you sure you want to delete?" } %>
 </li>
+
+<script>
+    $(() => {
+        let selectedValue = "";
+        if (<%= share.can_view?%>)
+            selectedValue = "0";
+        else if (<%= share.can_edit?%>)
+            selectedValue = "1";
+        else if (<%= share.can_delete?%>)
+            selectedValue = "2";
+        $(`.share-privileges[data-id=${<%= share.id %>}] option[value= "${selectedValue}" ]`).prop('selected', true);
+    })
+</script>

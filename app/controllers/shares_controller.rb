@@ -20,6 +20,20 @@ class SharesController < ApplicationController
     end
   end
 
+  def update
+    share = Share.find(params[:id])
+    if params[:value] == '0'
+      share.can_view!
+    elsif params[:value] == '1'
+      share.can_edit!
+    elsif params[:value] == '2'
+      share.can_delete!
+    end
+
+    flash[:success] = 'Edit permissions changed successfully.'
+    redirect_to notes_path
+  end
+
   def destroy
     @share = Share.find(params[:id])
     @share.destroy

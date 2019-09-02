@@ -5,24 +5,18 @@
   <% else %>
     <div class="card-columns mt-5">
       <% @notes.each do |note| %>
-        <div class="card" style="background-color: <%= note.background_color %>">
-          <i class="note-pin <%= note.is_pinned ? "fas fa-thumbtack" : "fas fa-map-pin" %>" data-id="<%= note.id %>" data-pinned=<%= note.is_pinned %>></i>
-          <div class="card-body">
+        <div class="card" data-id="<%= note.id %>">
+          <i class="note-pin <%= note.is_pinned ? "fas fa-thumbtack" : "fas fa-map-pin" %>" data-pinned=<%= note.is_pinned %>></i>
+          <div class="card-body" style="background-color: <%= note.background_color %>">
             <h5 class="card-title">Title: <%= note.title %></h5>
             <p class="card-text">Description: <%= note.description %></p>
 
             <% if note.images.attached? %>
-              <% note.images.each do |image| %>
-                <div class="">
-                  <img src="<%= url_for(image) %>>" class="card-img attachment-img">
-                </div>
-              <% end %>
+              <%= render 'images', note: note %>
             <% end %>
 
-            <%= link_to "Show", note_path(note), class: "navigation-links" %>
-            <%= link_to "Edit", edit_note_path(note), remote: true, class: "navigation-links" %>
-            <%= link_to "Delete", note_path(note), method: :delete, data: { confirm: "Are you sure you want to delete?" } %>
-            <%= link_to "Share", note_shares_path(note), remote: true, class: "navigation-links" %>
+            <%= render 'note_links', note: note %>
+
           </div>
         </div>
       <% end %>

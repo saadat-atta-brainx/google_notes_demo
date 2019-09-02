@@ -1,0 +1,5 @@
+<% share = note.shares.find_by(user_id: current_user.id) %>
+<% if share.can_edit? || share.can_delete? %>
+  <%= link_to "Edit", edit_note_path(note), remote: true, class: "navigation-links" %>
+<% end %>
+<%= link_to "Remove", note_share_path(share.note, share), method: :delete, data: { confirm: "Are you sure you want to delete?" } %>

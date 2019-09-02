@@ -1,2 +1,2 @@
-$(`.notes-main-container>.card-columns .note-pin[data-id="${<%= @note.id%>}"]`)
-    .parents('.card').html("<%= j render @note %>");
+$(`.notes-main-container>.card-columns .card[data-id="${<%= @note.id%>}"]`)
+    .html("<%= j render @note %>");

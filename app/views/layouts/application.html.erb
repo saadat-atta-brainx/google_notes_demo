@@ -10,8 +10,7 @@
 <body>
 <script>
     <% flash.each do |key, value| %>
-    if ("<%= key %>" === "error")
-        $.notify("<%= value %>", "warn", {autoHide: true, autoHideDelay: 5000});
+    $.notify("<%= value %>", "<%= key %>", {autoHide: true, autoHideDelay: 5000});
     <% end %>
 </script>
 <% if user_signed_in? %>

@@ -14,14 +14,22 @@ $(document).ready(function () {
                 });
             },
             minLength: 2,
-            select: function(event,ui){
+            select: function (event, ui) {
                 $('.suggest-user').val(ui.item.value)
             }
 
         }).data("ui-autocomplete")._renderItem = function (ul, item) {
-            return $("<li>" + item.value +"</li>")
+            return $("<li>" + item.value + "</li>")
                 .appendTo(ul);
         }
     });
+
+    $(document).on("change", ".share-privileges", function () {
+        $.ajax({
+            url: `/notes/${$(this).data('noteid')}/shares/${$(this).data('id')}`,
+            method: 'PATCH',
+            data: {value: $(this).val()}
+        })
+    })
 
 });
