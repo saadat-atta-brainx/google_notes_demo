@@ -10,4 +10,5 @@ class Note < ApplicationRecord
   scope :pinned, -> { where(is_pinned: true) }
   scope :pinned_descending, -> { order(is_pinned: :desc) }
   scope :search_by_title_or_description, ->(keyword) { where('title like :searchKey or description like :searchKey', { searchKey: "#{keyword}%" }) }
+  has_rich_text :description
 end

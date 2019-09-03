@@ -1,4 +1,10 @@
 $(document).on('turbolinks:load', function () {
+    $(document).ready(function () {
+        $(document).on("click", ".form-input-icon", function () {
+            $(".navbar-search").submit();
+        });
+    });
+
     $(document).on("click", ".note-pin", function () {
         $.ajax({
             type: "POST",

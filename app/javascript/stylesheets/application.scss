@@ -1,10 +1,18 @@
 /*
  *= require jquery-ui/autocomplete
  *= require shares
+ *= require active_admin
+ *= require notes
+ *= require shares
+  *= require users
  */
-@import "bootstrap";
-@import "font-awesome-sprockets";
-@import "font-awesome";
+@import "bootstrap/scss/bootstrap";
+$fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/scss/solid";
+@import "actiontext";
+
+
 .logo-title {
   padding-left: 4px;
   vertical-align: middle;

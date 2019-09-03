@@ -6,7 +6,6 @@ class NotesController < ApplicationController
     else
       @notes = current_user.notes.activated.pinned_descending
     end
-
   end
 
   def new
