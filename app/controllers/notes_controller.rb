@@ -6,22 +6,21 @@ class NotesController < ApplicationController
     else
       @notes = current_user.notes.activated.pinned_descending
     end
-  end
 
-  def show
-    @note = current_user.notes.activated.find(params[:id])
   end
 
   def new
     @note = Note.new
   end
 
+  def show
+    @note = current_user.notes.activated.find(params[:id])
+  end
+
   def create
-    @note = current_user.notes.create(note_params)
-    if @note.id
-      redirect_to note_path(@note)
-    else
-      render 'new'
+    @note = current_user.notes.new(note_params)
+    unless @note.save
+      render :new
     end
   end
 
@@ -31,15 +30,13 @@ class NotesController < ApplicationController
 
   def update
     @note = current_user.notes.activated.find(params[:id])
-    if @note.update(note_params)
-      redirect_to note_path(@note)
-    else
-      render 'edit'
+    unless @note.update(note_params)
+      render :edit
     end
   end
 
   def pinned
-    toggled_pin = params[:pinned].to_s == "true" ? false : true
+    toggled_pin = params[:pinned].to_s == 'true' ? false : true
     @note = current_user.notes.activated.find(params[:id])
     @note.update!(is_pinned: toggled_pin)
     render json: @note
@@ -51,6 +48,10 @@ class NotesController < ApplicationController
     redirect_to notes_path
   end
 
+  def shared
+    @notes = current_user.shared_notes
+  end
+
   def delete_image_attachment
     @note = current_user.notes.activated.find(params[:id])
     @note.images.find_by(params[:attachment_id]).purge
@@ -59,8 +60,8 @@ class NotesController < ApplicationController
 
   private
 
-  def note_params
-    params.require(:note).permit(:title, :description, :background_color, images: [])
-  end
+    def note_params
+      params.require(:note).permit(:title, :description, :background_color, images: [])
+    end
 
 end

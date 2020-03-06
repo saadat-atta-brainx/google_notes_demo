@@ -1,0 +1,4 @@
+<%= link_to "Show", note_path(note), class: "navigation-links" %>
+<%= link_to "Edit", edit_note_path(note), remote: true, class: "navigation-links" %>
+<%= link_to "Delete", note_path(note), method: :delete, data: { confirm: "Are you sure you want to delete?" } %>
+<%= link_to "Share", note_shares_path(note), remote: true, class: "navigation-links" %>

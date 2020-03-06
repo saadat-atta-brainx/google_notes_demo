@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_23_064444) do
+ActiveRecord::Schema.define(version: 2019_09_02_054430) do
 
   create_table "active_admin_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "namespace"
@@ -78,6 +78,17 @@ ActiveRecord::Schema.define(version: 2019_08_23_064444) do
     t.index ["user_id"], name: "index_notes_on_user_id"
   end
 
+  create_table "shares", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "note_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "authority", default: 0, null: false
+    t.index ["note_id"], name: "index_shares_on_note_id"
+    t.index ["user_id", "note_id"], name: "index_shares_on_user_id_and_note_id", unique: true
+    t.index ["user_id"], name: "index_shares_on_user_id"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -94,4 +105,6 @@ ActiveRecord::Schema.define(version: 2019_08_23_064444) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "notes", "users"
+  add_foreign_key "shares", "notes"
+  add_foreign_key "shares", "users"
 end

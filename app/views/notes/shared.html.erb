@@ -1,26 +1,21 @@
-<%= link_to "Create Note", new_note_path, { remote: true, class: "btn btn-info note-crud-btn" } %>
 <div class="notes-main-container">
   <% if @notes.empty? %>
     <h4>No Notes available</h4>
   <% else %>
     <div class="card-columns mt-5">
       <% @notes.each do |note| %>
-        <div class="card" data-id="<%= note.id %>">
-          <i class="note-pin <%= note.is_pinned ? "fas fa-thumbtack" : "fas fa-map-pin" %>" data-pinned=<%= note.is_pinned %>></i>
-          <div class="card-body" style="background-color: <%= note.background_color %>">
+        <div class="card" style="background-color: <%= note.background_color %>" data-id="<%= note.id %>">
+
+          <div class="card-body">
             <h5 class="card-title">Title: <%= note.title %></h5>
             <p class="card-text">Description: <%= note.description %></p>
-
             <% if note.images.attached? %>
               <%= render 'images', note: note %>
             <% end %>
-
-            <%= render 'note_links', note: note %>
-
+           <%= render 'shared_note_links', note: note %>
           </div>
         </div>
       <% end %>
     </div>
   <% end %>
 </div>
-
